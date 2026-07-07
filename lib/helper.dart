@@ -60,7 +60,6 @@ class Helper {
 
 //TODO: Passo 25 - Altere a propriedade questionNumber para que esta seja privada, assim somente o helper.dart terá acesso direto a ela. Dica: você pode fazer isso clicando com o botão direito do mouse sobre o nome (questionNumber) e então selecionando a opção Refactor e na sequência Rename. Isso fará com que as alterações sejam aplicadas no escopo inteiro do projeto, ou seja, em todo local que está propriedade está sendo utilizada.
 
-//TODO: Passo 17 - Crie um método chamado nextQuestion. Ele não retornará nada inicialmente, porém, ele deve receber como parâmetro um inteiro que pode ser chamado de userChoice e que receberá um número que representa a escolha do usuário.
 
 //TODO: Passo 20 - Faça download do fluxograma com as sequências para os possíveis resultados: https://drive.google.com/file/d/1vOI-Jr0Brp1LIQ7CDB8Y03PykWhWBmA2
 
