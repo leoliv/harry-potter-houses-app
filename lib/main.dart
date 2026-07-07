@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-//TODO: Passo 15 - Execute o app novamente para ver as alterações sendo exibidas da tela.
+import 'package:harry_potter_houses_starting/helper.dart';
 
 void main() => runApp(HarryPotterHouses());
 
@@ -13,11 +12,11 @@ class HarryPotterHouses extends StatelessWidget {
   }
 }
 
-//TODO: Passo 9 - Crie um novo objeto chamado helper utilizando a classe Helper.
-
+Helper helper = Helper();
 
 class HarryPoterPage extends StatefulWidget {
-  _HarryPoterPageState createState() => _HarryPoterPageState();
+  _HarryPoterPageState createState() =>
+      _HarryPoterPageState();
 }
 
 class _HarryPoterPageState extends State<HarryPoterPage> {
@@ -25,9 +24,14 @@ class _HarryPoterPageState extends State<HarryPoterPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-    //TODO: Passo 1 - Adicione uma imagem de fundo (background) para esse Container. Dica: utilize a imagem harrypotter.jpg que está dentro da pasta imagens.
-        padding: EdgeInsets.symmetric(vertical: 50.0, horizontal: 15.0),
+        padding: EdgeInsets.symmetric(
+            vertical: 50.0, horizontal: 15.0),
         constraints: BoxConstraints.expand(),
+        decoration: BoxDecoration(
+            image: DecorationImage(
+                image:
+                    AssetImage('imagens/harrypotter.jpg'),
+                fit: BoxFit.cover)),
         child: SafeArea(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -38,8 +42,7 @@ class _HarryPoterPageState extends State<HarryPoterPage> {
                   child: Padding(
                     padding: EdgeInsets.only(top: 120),
                     child: Text(
-                      //TODO: Passo 10 - Use o helper para obter a primeira questão e mostrá-la dentro do Widget Text.
-                      'Aqui serão exibidas questões, que para nossa situação podem ser perguntas ou definições de que casas são indicadas para os usuários.',
+                      helper.getQuestion(),
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 25.0,
@@ -50,15 +53,15 @@ class _HarryPoterPageState extends State<HarryPoterPage> {
               ),
               Expanded(
                 flex: 2,
-                child: FlatButton(
+                child: TextButton(
                   onPressed: () {
                     //Escolha (choice) 1 feita pelo usuário.
-                    //TODO: Passo 18 - Chame o método nextQuestion() do helper passando como parâmetro o número 1 que representa a escolha do usuário.
+                    helper.nextQuestion(1);
                   },
-                  color: Colors.green,
+                  style: TextButton.styleFrom(
+                      backgroundColor: Colors.green),
                   child: Text(
-                    //TODO: Passo 13 - Use o helper para obter o conteúdo textual de choice1 (escolha 1).
-                    'Escolha (choice) 1',
+                    helper.getChoice1(),
                     style: TextStyle(
                       fontSize: 20.0,
                     ),
@@ -72,15 +75,17 @@ class _HarryPoterPageState extends State<HarryPoterPage> {
                 flex: 2,
                 //TODO: Passo 26 - Use o Widget Visibility deixando o FlatButton como seu filho.
                 //TODO: Passo 28 - Altere a propriedade visible do Widget Visibility para uma chamada do método buttonShouldBeVisible do helper.
-                child: FlatButton(
+                child: TextButton(
                   onPressed: () {
                     //Escolha (choice) 2 feita pelo usuário.
                     //TODO: Passo 19 - Chame o método nextQuestion do helper e passe como parâmetro o número 2 que representa a escolha do usuário.
+                    helper.nextQuestion(2);
                   },
-                  color: Colors.deepPurpleAccent,
+                  style: TextButton.styleFrom(
+                      backgroundColor:
+                          Colors.deepPurpleAccent),
                   child: Text(
-                    //TODO: Passo 14 - Use o helper para obter o conteúdo textual de choice2 (escolha 2).
-                    'Escolha (choice) 2',
+                    helper.getChoice2(),
                     style: TextStyle(
                       fontSize: 20.0,
                     ),
