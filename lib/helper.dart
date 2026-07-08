@@ -41,31 +41,61 @@ class Helper {
   ];
 
   String getQuestion() {
-    return _questionData[0].questionTitle;
+    return _questionData[_questionNumber].questionTitle;
   }
 
   String getChoice1() {
-    return _questionData[0].choice1;
+    return _questionData[_questionNumber].choice1;
   }
 
   String getChoice2() {
-    return _questionData[0].choice2;
+    return _questionData[_questionNumber].choice2;
   }
 
-  void nextQuestion(int userChoice) {}
+  void reestart() {
+    _questionNumber = 0;
+  }
+
+  bool buttonShouldBeVisible() {
+    return [0, 1, 2].contains(_questionNumber);
+  }
+
+  void nextQuestion(int userChoice) {
+    if (_questionNumber == 0 && userChoice == 1) {
+      _questionNumber = 2;
+      return;
+    }
+
+    if (_questionNumber == 2 && userChoice == 1) {
+      _questionNumber = 5;
+      return;
+    }
+
+    if (_questionNumber == 2 && userChoice == 2) {
+      _questionNumber = 4;
+      return;
+    }
+    if (_questionNumber == 0 && userChoice == 2) {
+      _questionNumber = 1;
+      return;
+    }
+    if (_questionNumber == 1 && userChoice == 1) {
+      _questionNumber = 3;
+      return;
+    }
+    if (_questionNumber == 1 && userChoice == 2) {
+      _questionNumber = 6;
+      return;
+    }
+
+    switch (_questionNumber) {
+      case 3:
+      case 4:
+      case 5:
+      case 6:
+        reestart();
+        break;
+      default:
+    }
+  }
 }
-
-
-//TODO: Passo 23 - Use o questionNumber,  dentro do getQuestion(), do getChoice1() e do getChoice2() para obter as opções atualizadas ao invés de sempre receber a primeira questão.
-
-//TODO: Passo 25 - Altere a propriedade questionNumber para que esta seja privada, assim somente o helper.dart terá acesso direto a ela. Dica: você pode fazer isso clicando com o botão direito do mouse sobre o nome (questionNumber) e então selecionando a opção Refactor e na sequência Rename. Isso fará com que as alterações sejam aplicadas no escopo inteiro do projeto, ou seja, em todo local que está propriedade está sendo utilizada.
-
-
-//TODO: Passo 20 - Faça download do fluxograma com as sequências para os possíveis resultados: https://drive.google.com/file/d/1vOI-Jr0Brp1LIQ7CDB8Y03PykWhWBmA2
-
-//TODO: Passo 21 - Utilizando o fluxograma que você baixou modifique o método nextQuestion() para alterar o questionNumber de acordo com a escolha(choice) feita pelo usuário.
-
-//TODO: Passo 22 - No método nextQuestion se a questionNumber for igual a 3,4,5 ou 6 o usuário chegou ao final das questões e recebeu a resposta de qual casa é mais parecida com o perfil dele. Faça então uma chamada para um método restart() que servirá para reiniciar as questões modificando o valor de questionNumber para 0 (zero)
-
-//TODO: Passo 27 - Crie um método chamado buttonShouldBeVisible() que irá checar se o questionNumber é 0, 1 ou 2. Se ess for o caso, o método deverá retornar true indicando que os dois botões mostram uma opção. Caso contrário deverá ser retornado false.
-

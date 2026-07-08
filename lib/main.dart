@@ -56,7 +56,9 @@ class _HarryPoterPageState extends State<HarryPoterPage> {
                 child: TextButton(
                   onPressed: () {
                     //Escolha (choice) 1 feita pelo usuário.
-                    helper.nextQuestion(1);
+                    setState(() {
+                      helper.nextQuestion(1);
+                    });
                   },
                   style: TextButton.styleFrom(
                       backgroundColor: Colors.green),
@@ -73,20 +75,23 @@ class _HarryPoterPageState extends State<HarryPoterPage> {
               ),
               Expanded(
                 flex: 2,
-                //TODO: Passo 26 - Use o Widget Visibility deixando o FlatButton como seu filho.
-                //TODO: Passo 28 - Altere a propriedade visible do Widget Visibility para uma chamada do método buttonShouldBeVisible do helper.
-                child: TextButton(
-                  onPressed: () {
-                    //Escolha (choice) 2 feita pelo usuário.
-                    helper.nextQuestion(2);
-                  },
-                  style: TextButton.styleFrom(
-                      backgroundColor:
-                          Colors.deepPurpleAccent),
-                  child: Text(
-                    helper.getChoice2(),
-                    style: TextStyle(
-                      fontSize: 20.0,
+                child: Visibility(
+                  visible: helper.buttonShouldBeVisible(),
+                  child: TextButton(
+                    onPressed: () {
+                      //Escolha (choice) 2 feita pelo usuário.
+                      setState(() {
+                        helper.nextQuestion(2);
+                      });
+                    },
+                    style: TextButton.styleFrom(
+                        backgroundColor:
+                            Colors.deepPurpleAccent),
+                    child: Text(
+                      helper.getChoice2(),
+                      style: TextStyle(
+                        fontSize: 20.0,
+                      ),
                     ),
                   ),
                 ),
@@ -98,7 +103,3 @@ class _HarryPoterPageState extends State<HarryPoterPage> {
     );
   }
 }
-
-//TODO: Passo 24 - Execute o app e tente descobrir o que você precisa adicionar ao seu código para fazer com que a questão altere quando você pressionar em um dos botões de resposta.
-
-//TODO: Passo 29 - Execute o app e teste para ver se tudo ficou funcionando perfeitamente.
