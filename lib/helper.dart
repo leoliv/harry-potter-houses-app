@@ -52,7 +52,7 @@ class Helper {
     return _questionData[_questionNumber].choice2;
   }
 
-  void reestart() {
+  void _reestart() {
     _questionNumber = 0;
   }
 
@@ -61,41 +61,20 @@ class Helper {
   }
 
   void nextQuestion(int userChoice) {
-    if (_questionNumber == 0 && userChoice == 1) {
-      _questionNumber = 2;
+    if (_questionNumber >= 3 && _questionNumber <= 6) {
+      _reestart();
       return;
     }
 
-    if (_questionNumber == 2 && userChoice == 1) {
-      _questionNumber = 5;
-      return;
-    }
-
-    if (_questionNumber == 2 && userChoice == 2) {
-      _questionNumber = 4;
-      return;
-    }
-    if (_questionNumber == 0 && userChoice == 2) {
-      _questionNumber = 1;
-      return;
-    }
-    if (_questionNumber == 1 && userChoice == 1) {
-      _questionNumber = 3;
-      return;
-    }
-    if (_questionNumber == 1 && userChoice == 2) {
-      _questionNumber = 6;
-      return;
-    }
-
-    switch (_questionNumber) {
-      case 3:
-      case 4:
-      case 5:
-      case 6:
-        reestart();
-        break;
-      default:
-    }
+    _questionNumber =
+        switch ((_questionNumber, userChoice)) {
+      (0, 1) => 2,
+      (2, 1) => 5,
+      (2, 2) => 4,
+      (0, 2) => 1,
+      (1, 1) => 3,
+      (1, 2) => 6,
+      _ => _questionNumber,
+    };
   }
 }
